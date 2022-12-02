@@ -4,12 +4,21 @@ import ExternalButton, {
   AnotherExternalButton,
 } from './components/ExternalButton'
 import AboutPage from './components/AboutPage'
+import AdminPanel from './components/AdminPanel'
 
 function MyButton() {
   return <button>Same file button!</button>
 }
 
 function App() {
+  let content
+  let isLoggedIn = true
+  if (isLoggedIn) {
+    content = <AdminPanel />
+  } else {
+    content = <AboutPage />
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -28,7 +37,7 @@ function App() {
         <MyButton />
         <ExternalButton />
         <AnotherExternalButton />
-        <AboutPage />
+        <div>{content}</div>
       </header>
     </div>
   )
