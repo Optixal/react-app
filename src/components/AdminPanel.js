@@ -1,6 +1,7 @@
 function AdminPanel() {
   return (
     <>
+      <h1>Welcome back, Admin!</h1>
       <ul>
         <li>
           <p className="nav-p">Home</p>
@@ -18,7 +19,6 @@ function AdminPanel() {
           <p className="nav-p">Logout</p>
         </li>
       </ul>
-      <h1>Welcome back, Admin!</h1>
       <p>This is a lovely admin panel.</p>
     </>
   )

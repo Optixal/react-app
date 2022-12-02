@@ -26,7 +26,6 @@ function ReactiveButtonWithProps({ count, onClick }) {
 }
 
 function App() {
-  let isLoggedIn = true
   const products = [
     { title: 'Cabbage', isFruit: false, id: 1 },
     { title: 'Garlic', isFruit: false, id: 2 },
@@ -36,6 +35,11 @@ function App() {
   const [count, setCount] = useState(0)
   function handleClick() {
     setCount(count + 1)
+  }
+
+  const [loggedIn, setLoggedIn] = useState(false)
+  function handleLogin() {
+    setLoggedIn(!loggedIn)
   }
 
   return (
@@ -53,11 +57,18 @@ function App() {
         >
           Learn React @
         </a>
+
+        <h3>Components</h3>
         <MyButton />
         <ExternalButton />
         <AnotherExternalButton />
-        <div>{isLoggedIn ? <AdminPanel /> : <AboutPage />}</div>
-        <div>{isLoggedIn && <AdminPanel />}</div>
+
+        <h3>Conditionals</h3>
+        <button onClick={handleLogin}>{loggedIn ? 'Logout' : 'Login'}</button>
+        <div>{loggedIn ? <AdminPanel /> : <AboutPage />}</div>
+        <div>{loggedIn && <p>Hello admin.</p>}</div>
+
+        <h3>Looping</h3>
         <ul>
           {products.map(product => (
             <li
