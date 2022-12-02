@@ -1,5 +1,13 @@
 import logo from './logo.svg'
 import './App.css'
+import ExternalButton, {
+  AnotherExternalButton,
+} from './components/ExternalButton'
+import AboutPage from './components/AboutPage'
+
+function MyButton() {
+  return <button>Same file button!</button>
+}
 
 function App() {
   return (
@@ -17,6 +25,10 @@ function App() {
         >
           Learn React @
         </a>
+        <MyButton />
+        <ExternalButton />
+        <AnotherExternalButton />
+        <AboutPage />
       </header>
     </div>
   )
