@@ -21,6 +21,10 @@ function ReactiveButton() {
   return <button onClick={handleClick}>Clicked {count} times</button>
 }
 
+function ReactiveButtonWithProps({ count, onClick }) {
+  return <button onClick={onClick}>Clicked {count} times</button>
+}
+
 function App() {
   let isLoggedIn = true
   const products = [
@@ -28,6 +32,11 @@ function App() {
     { title: 'Garlic', isFruit: false, id: 2 },
     { title: 'Apple', isFruit: true, id: 3 },
   ]
+
+  const [count, setCount] = useState(0)
+  function handleClick() {
+    setCount(count + 1)
+  }
 
   return (
     <div className="App">
@@ -60,10 +69,13 @@ function App() {
           ))}
         </ul>
 
-        <hr />
         <h3>Reactive buttons</h3>
         <ReactiveButton />
         <ReactiveButton />
+
+        <h3>Sharing data between components</h3>
+        <ReactiveButtonWithProps count={count} onClick={handleClick} />
+        <ReactiveButtonWithProps count={count} onClick={handleClick} />
       </header>
     </div>
   )
