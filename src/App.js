@@ -11,13 +11,7 @@ function MyButton() {
 }
 
 function App() {
-  let content
   let isLoggedIn = true
-  if (isLoggedIn) {
-    content = <AdminPanel />
-  } else {
-    content = <AboutPage />
-  }
 
   return (
     <div className="App">
@@ -37,7 +31,8 @@ function App() {
         <MyButton />
         <ExternalButton />
         <AnotherExternalButton />
-        <div>{content}</div>
+        <div>{isLoggedIn ? <AdminPanel /> : <AboutPage />}</div>
+        <div>{isLoggedIn && <AdminPanel />}</div>
       </header>
     </div>
   )
