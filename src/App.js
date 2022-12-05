@@ -58,35 +58,37 @@ function App() {
           Learn React @
         </a>
 
-        <h3>Components</h3>
-        <MyButton />
-        <ExternalButton />
-        <AnotherExternalButton />
+        <article className="prose prose-invert">
+          <h3>Components</h3>
+          <MyButton />
+          <ExternalButton />
+          <AnotherExternalButton />
 
-        <h3>Conditionals</h3>
-        <button onClick={handleLogin}>{loggedIn ? 'Logout' : 'Login'}</button>
-        <div>{loggedIn ? <AdminPanel /> : <AboutPage />}</div>
-        <div>{loggedIn && <p>Hello admin.</p>}</div>
+          <h3>Conditionals</h3>
+          <button onClick={handleLogin}>{loggedIn ? 'Logout' : 'Login'}</button>
+          <div>{loggedIn ? <AdminPanel /> : <AboutPage />}</div>
+          <div>{loggedIn && <p>Hello admin.</p>}</div>
 
-        <h3>Looping</h3>
-        <ul>
-          {products.map(product => (
-            <li
-              key={product.id}
-              style={{ color: product.isFruit ? 'magenta' : 'darkgreen' }}
-            >
-              {product.title}
-            </li>
-          ))}
-        </ul>
+          <h3>Looping</h3>
+          <ul>
+            {products.map(product => (
+              <li
+                key={product.id}
+                style={{ color: product.isFruit ? 'magenta' : 'darkgreen' }}
+              >
+                {product.title}
+              </li>
+            ))}
+          </ul>
 
-        <h3>Reactive buttons</h3>
-        <ReactiveButton />
-        <ReactiveButton />
+          <h3>Reactive buttons</h3>
+          <ReactiveButton />
+          <ReactiveButton />
 
-        <h3>Sharing data between components</h3>
-        <ReactiveButtonWithProps count={count} onClick={handleClick} />
-        <ReactiveButtonWithProps count={count} onClick={handleClick} />
+          <h3>Sharing data between components</h3>
+          <ReactiveButtonWithProps count={count} onClick={handleClick} />
+          <ReactiveButtonWithProps count={count} onClick={handleClick} />
+        </article>
       </header>
     </div>
   )

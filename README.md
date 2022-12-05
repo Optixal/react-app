@@ -14,6 +14,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+Additionally, run `npx tailwindcss -i ./src/index.css -o ./src/output.css --watch` for tailwind to monitor changes to `index.css`.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
