@@ -10,9 +10,9 @@ function FilterableProductTable({ products }) {
     <div>
       <SearchBar
         searchText={searchText}
-        setSearchText={setSearchText}
+        onSearchText={setSearchText}
         inStockOnly={inStockOnly}
-        setInStockOnly={setInStockOnly}
+        onInStockOnly={setInStockOnly}
       />
       <ProductTable
         products={products}
