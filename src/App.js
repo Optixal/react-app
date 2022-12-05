@@ -6,6 +6,8 @@ import ExternalButton, {
 import AboutPage from './components/AboutPage'
 import AdminPanel from './components/AdminPanel'
 import { useState } from 'react'
+import clsx from 'clsx'
+import FilterableProductTable from './components/ProductTable/FilterableProductTable'
 
 function MyButton() {
   return <button>Same file button!</button>
@@ -30,6 +32,15 @@ function App() {
     { title: 'Cabbage', isFruit: false, id: 1 },
     { title: 'Garlic', isFruit: false, id: 2 },
     { title: 'Apple', isFruit: true, id: 3 },
+  ]
+
+  const PRODUCTS = [
+    { category: 'Fruits', price: '$1', stocked: true, name: 'Apple' },
+    { category: 'Fruits', price: '$1', stocked: true, name: 'Dragonfruit' },
+    { category: 'Fruits', price: '$2', stocked: false, name: 'Passionfruit' },
+    { category: 'Vegetables', price: '$2', stocked: true, name: 'Spinach' },
+    { category: 'Vegetables', price: '$4', stocked: false, name: 'Pumpkin' },
+    { category: 'Vegetables', price: '$1', stocked: true, name: 'Peas' },
   ]
 
   const [count, setCount] = useState(0)
@@ -66,15 +77,20 @@ function App() {
 
           <h3>Conditionals</h3>
           <button onClick={handleLogin}>{loggedIn ? 'Logout' : 'Login'}</button>
+          <hr />
           <div>{loggedIn ? <AdminPanel /> : <AboutPage />}</div>
           <div>{loggedIn && <p>Hello admin.</p>}</div>
+          <hr />
 
           <h3>Looping</h3>
           <ul>
             {products.map(product => (
               <li
                 key={product.id}
-                style={{ color: product.isFruit ? 'magenta' : 'darkgreen' }}
+                className={clsx({
+                  'text-green-300': product.isFruit,
+                  'text-purple-300': !product.isFruit,
+                })}
               >
                 {product.title}
               </li>
@@ -88,6 +104,9 @@ function App() {
           <h3>Sharing data between components</h3>
           <ReactiveButtonWithProps count={count} onClick={handleClick} />
           <ReactiveButtonWithProps count={count} onClick={handleClick} />
+
+          <h3>Product table</h3>
+          <FilterableProductTable products={PRODUCTS} />
         </article>
       </header>
     </div>
