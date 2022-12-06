@@ -1,13 +1,14 @@
-import logo from './logo.svg'
+import clsx from 'clsx'
+import { useState } from 'react'
 import './App.css'
+import AboutPage from './components/AboutPage'
+import AdminPanel from './components/AdminPanel'
 import ExternalButton, {
   AnotherExternalButton,
 } from './components/ExternalButton'
-import AboutPage from './components/AboutPage'
-import AdminPanel from './components/AdminPanel'
-import { useState } from 'react'
-import clsx from 'clsx'
 import FilterableProductTable from './components/ProductTable/FilterableProductTable'
+import Todos from './components/Todo/Todos'
+import logo from './logo.svg'
 
 function MyButton() {
   return <button>Same file button!</button>
@@ -107,6 +108,9 @@ function App() {
 
           <h3>Product table</h3>
           <FilterableProductTable products={PRODUCTS} />
+
+          <h3>Fetch data</h3>
+          <Todos />
         </article>
       </header>
     </div>
