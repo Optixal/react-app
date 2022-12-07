@@ -71,7 +71,7 @@ function App() {
           Learn React @
         </a>
 
-        <article className="prose prose-invert">
+        <article className="prose-invert prose">
           <h3>Components</h3>
           <MyButton />
           <ExternalButton />
@@ -118,6 +118,14 @@ function App() {
             <span className="text-sm">(200ms delay on updates)</span>
           </h3>
           <TodosQuery />
+
+          <h3>daisyUI</h3>
+          <button className="btn">Button</button>
+          <input
+            type="checkbox"
+            className="checkbox-primary checkbox mx-auto mt-4 block"
+          />
+          <input type="checkbox" className="toggle-secondary toggle mt-4" />
         </article>
       </header>
     </div>
