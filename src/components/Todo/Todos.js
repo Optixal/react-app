@@ -4,6 +4,7 @@ import Todo from './Todo'
 function todosReducer(todos, action) {
   switch (action.type) {
     case 'add': {
+      action.todos.splice(action.limit)
       return [...todos, ...action.todos]
     }
     case 'modify': {
@@ -35,10 +36,10 @@ function Todos() {
     async function startFetching() {
       const json = await fetchTodos()
       if (!ignore) {
-        console.log('Setting todos')
         dispatch({
           type: 'add',
           todos: json,
+          limit: 5,
         })
       }
     }

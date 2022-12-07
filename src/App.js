@@ -8,6 +8,7 @@ import ExternalButton, {
 } from './components/ExternalButton'
 import FilterableProductTable from './components/ProductTable/FilterableProductTable'
 import Todos from './components/Todo/Todos'
+import TodosQuery from './components/TodoQuery/TodosQuery'
 import logo from './logo.svg'
 
 function MyButton() {
@@ -111,6 +112,12 @@ function App() {
 
           <h3>Fetch data</h3>
           <Todos />
+
+          <h3>
+            Fetch data with TanStack Query{' '}
+            <span className="text-sm">(200ms delay on updates)</span>
+          </h3>
+          <TodosQuery />
         </article>
       </header>
     </div>
