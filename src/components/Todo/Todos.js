@@ -3,9 +3,9 @@ import Todo from './Todo'
 
 function todosReducer(todos, action) {
   switch (action.type) {
-    case 'add': {
+    case 'set': {
       action.todos.splice(action.limit)
-      return [...todos, ...action.todos]
+      return [...action.todos]
     }
     case 'modify': {
       return todos.map(todo => {
@@ -37,7 +37,7 @@ function Todos() {
       const json = await fetchTodos()
       if (!ignore) {
         dispatch({
-          type: 'add',
+          type: 'set',
           todos: json,
           limit: 5,
         })
