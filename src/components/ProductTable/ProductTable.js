@@ -22,7 +22,7 @@ function ProductTable({ products, searchText, inStockOnly }) {
   }
 
   return (
-    <table>
+    <table className="table-zebra table-compact table">
       <thead>
         <tr>
           <th>Name</th>

@@ -7,9 +7,19 @@ import ExternalButton, {
   AnotherExternalButton,
 } from './components/ExternalButton'
 import FilterableProductTable from './components/ProductTable/FilterableProductTable'
+import ThemeToggle from './components/ThemeToggle'
 import Todos from './components/Todo/Todos'
-import TodosQuery from './components/TodoQuery/TodosQuery'
+import TodosQuery from './components/Todo/TodosQuery'
 import logo from './logo.svg'
+
+const themes = {
+  light: ['light', 'lofi', 'cupcake', 'winter', 'cyberpunk'],
+  dark: ['dark', 'dracula', 'synthwave', 'halloween', 'night'],
+}
+
+function pickRandom(list) {
+  return list[Math.floor(Math.random() * list.length)]
+}
 
 function MyButton() {
   return <button>Same file button!</button>
@@ -55,8 +65,19 @@ function App() {
     setLoggedIn(!loggedIn)
   }
 
+  const [dark, setDark] = useState(true)
+  const [theme, setTheme] = useState(pickRandom(themes.dark))
+  function toggleDark() {
+    if (dark) {
+      setTheme(pickRandom(themes.light))
+    } else {
+      setTheme(pickRandom(themes.dark))
+    }
+    setDark(!dark)
+  }
+
   return (
-    <div className="App">
+    <div className="App transition-all duration-200" data-theme={theme}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -126,6 +147,12 @@ function App() {
             className="checkbox-primary checkbox mx-auto mt-4 block"
           />
           <input type="checkbox" className="toggle-secondary toggle mt-4" />
+
+          <ThemeToggle
+            dark={dark}
+            theme={theme}
+            onChange={toggleDark}
+          ></ThemeToggle>
         </article>
       </header>
     </div>

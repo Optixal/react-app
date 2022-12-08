@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import TodoQuery from './TodoQuery'
+import Todo from './Todo'
 
 const useMutateTodos = () => {
   const queryClient = useQueryClient()
@@ -45,7 +45,7 @@ function TodosQuery() {
   return (
     <ol>
       {data.map(todo => (
-        <TodoQuery todo={todo} onChange={handleCheck} key={todo.id} />
+        <Todo todo={todo} onChange={handleCheck} key={todo.id} />
       ))}
     </ol>
   )
