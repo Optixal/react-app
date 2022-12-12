@@ -6,6 +6,7 @@ import AdminPanel from './components/AdminPanel'
 import ExternalButton, {
   AnotherExternalButton,
 } from './components/ExternalButton'
+import Pocket from './components/Pocket/Pocket'
 import FilterableProductTable from './components/ProductTable/FilterableProductTable'
 import ThemeToggle from './components/ThemeToggle'
 import Todos from './components/Todo/Todos'
@@ -160,6 +161,7 @@ function App() {
 
       <div className="prose max-w-none py-12">
         <h3>PocketBase</h3>
+        <Pocket />
       </div>
 
       <ThemeToggle
