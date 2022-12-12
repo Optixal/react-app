@@ -9,7 +9,7 @@ export default function AboutPage() {
     <>
       <h1>About {user.name}</h1>
       <img
-        className="rounded m-auto"
+        className="m-auto rounded-full"
         src={user.imageUrl}
         alt={'Photo of' + user.name}
         style={{

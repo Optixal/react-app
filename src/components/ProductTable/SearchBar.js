@@ -3,7 +3,7 @@ function SearchBar({ searchText, onSearchText, inStockOnly, onInStockOnly }) {
     <form action="">
       <div className="form-control w-full">
         <label className="label">
-          <span className="label-text">What is your name?</span>
+          <span className="label-text">Search for a product</span>
         </label>
         <input
           type="text"
