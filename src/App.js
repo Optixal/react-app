@@ -1,5 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 import AboutPage from './components/AboutPage'
 import AdminPanel from './components/AdminPanel'
@@ -159,8 +161,8 @@ function App() {
 
       <hr className="border-2 border-base-200" />
 
-      <div className="prose max-w-none py-12">
-        <h3>PocketBase</h3>
+      <div className="prose mx-auto py-12">
+        <h3 className="mb-4">PocketBase</h3>
         <Pocket />
       </div>
 
@@ -169,6 +171,8 @@ function App() {
         theme={theme}
         onChange={toggleDark}
       ></ThemeToggle>
+
+      <ToastContainer theme={dark ? 'dark' : 'light'} />
     </div>
   )
 }
