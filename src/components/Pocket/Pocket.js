@@ -3,16 +3,6 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { auth, listPosts, pb } from '../../pocketbase/pb'
 
-// To customize style of react-toastify -> daisyUI -> tailwind
-const toastColorClass = {
-  success: 'success',
-  error: 'error',
-  info: 'info',
-  warning: 'warning',
-  default: 'neutral',
-  dark: 'neutral',
-}
-
 function Pocket() {
   // State
 
