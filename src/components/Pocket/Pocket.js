@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { auth, listPosts, pb } from '../../pocketbase/pb'
+import Post from './Post'
 
 function Pocket() {
   // State
@@ -51,15 +52,7 @@ function Pocket() {
     return <p>Loading.. ⏳</p>
   }
 
-  const posts = data?.map(record => (
-    <div
-      key={record.id}
-      className="mx-auto mb-3 w-fit rounded-md bg-base-300 px-4 py-3 shadow-sm"
-    >
-      <p className="text-md m-0 font-bold">{record.title}</p>
-      <p className="m-0 text-sm">{record.content}</p>
-    </div>
-  ))
+  const posts = data?.map(record => <Post record={record} key={record.id} />)
 
   const loginLogout = loggedIn ? (
     <button onClick={logout}>Logout</button>
@@ -68,11 +61,10 @@ function Pocket() {
       <div className="flex flex-row gap-4">
         <div className="flex-1">
           <label className="label">
-            <span className="label-text">Username</span>
+            <span className="label-text">Username or email</span>
           </label>
           <input
             type="text"
-            placeholder="Type your username here"
             className="input-bordered input mb-4 w-full"
             value={username}
             onChange={e => setUsername(e.target.value)}
@@ -85,7 +77,6 @@ function Pocket() {
           </label>
           <input
             type="password"
-            placeholder="Type your password here"
             className="input-bordered input mb-4 w-full"
             value={password}
             onChange={e => setPassword(e.target.value)}

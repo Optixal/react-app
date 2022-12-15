@@ -166,12 +166,7 @@ function App() {
         <Pocket />
       </div>
 
-      <ThemeToggle
-        dark={dark}
-        theme={theme}
-        onChange={toggleDark}
-      ></ThemeToggle>
-
+      <ThemeToggle dark={dark} theme={theme} onChange={toggleDark} />
       <ToastContainer theme={dark ? 'dark' : 'light'} />
     </div>
   )
