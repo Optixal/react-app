@@ -9,16 +9,12 @@ import SaveIcon from './SaveIcon'
 function Post({ record }) {
   const prevEditing = useRef(false)
   const [editing, setEditing] = useState(false)
-  const [title, setTitle] = useState(record.title)
-  const [content, setContent] = useState(record.content)
+  const [post, setPost] = useState(record)
   const editable = pb.authStore.model?.id === record.poster
 
   useEffect(() => {
     async function update() {
-      const updatePromise = updatePost(record.id, {
-        title,
-        content,
-      })
+      const updatePromise = updatePost(post)
       toast.promise(updatePromise, {
         pending: 'Updating post...',
         success: 'Post updated.',
@@ -29,12 +25,12 @@ function Post({ record }) {
 
     // Save post
     if (prevEditing.current && !editing) {
-      console.log('Title: ' + title)
-      console.log('Content: ' + content)
+      console.log('Title: ' + post.title)
+      console.log('Content: ' + post.content)
       update().catch(e => console.log(e))
     }
     prevEditing.current = editing
-  }, [editing, title, content, record.id])
+  }, [editing, post])
 
   let postBody
   if (editing) {
@@ -43,21 +39,31 @@ function Post({ record }) {
         <input
           type="text"
           className="text-md input input-sm mb-3 w-full"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
+          value={post.title}
+          onChange={e =>
+            setPost({
+              ...post,
+              title: e.target.value,
+            })
+          }
         />
         <textarea
           className="textarea min-h-[120px] w-full text-sm"
-          value={content}
-          onChange={e => setContent(e.target.value)}
+          value={post.content}
+          onChange={e =>
+            setPost({
+              ...post,
+              content: e.target.value,
+            })
+          }
         />
       </>
     )
   } else {
     postBody = (
       <>
-        <p className="text-md m-0 font-bold">{title}</p>
-        <p className="m-0 max-w-md text-sm">{content}</p>
+        <p className="text-md m-0 font-bold">{post.title}</p>
+        <p className="m-0 max-w-md text-sm">{post.content}</p>
       </>
     )
   }

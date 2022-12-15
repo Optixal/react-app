@@ -10,6 +10,6 @@ export async function listPosts() {
   return await pb.collection('posts').getFullList(200)
 }
 
-export async function updatePost(id, post) {
-  return await pb.collection('posts').update(id, post)
+export async function updatePost(post) {
+  return await pb.collection('posts').update(post.id, post)
 }
