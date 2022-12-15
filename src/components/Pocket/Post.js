@@ -37,6 +37,13 @@ function Post({ record, deletePost }) {
     prevEditing.current = editing
   }, [editing, post, record])
 
+  function handleChange(e) {
+    setPost({
+      ...post,
+      [e.target.name]: e.target.value,
+    })
+  }
+
   let postBody
   if (editing) {
     postBody = (
@@ -44,23 +51,15 @@ function Post({ record, deletePost }) {
         <input
           type="text"
           className="text-md input input-sm mb-3 w-full"
+          name="title"
           value={post.title}
-          onChange={e =>
-            setPost({
-              ...post,
-              title: e.target.value,
-            })
-          }
+          onChange={handleChange}
         />
         <textarea
           className="textarea min-h-[120px] w-full text-sm"
+          name="content"
           value={post.content}
-          onChange={e =>
-            setPost({
-              ...post,
-              content: e.target.value,
-            })
-          }
+          onChange={handleChange}
         />
       </>
     )
