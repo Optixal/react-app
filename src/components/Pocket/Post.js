@@ -76,7 +76,7 @@ function Post({ record, deletePost }) {
     <div className="relative mx-auto mb-5 w-fit rounded-md bg-base-300 py-4 pl-5 pr-10 text-left shadow-sm">
       {postBody}
       {editable && (
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-2 right-1">
           <label className="swap swap-rotate cursor-pointer transition-colors duration-200 hover:text-accent">
             <input
               type="checkbox"
@@ -94,7 +94,7 @@ function Post({ record, deletePost }) {
       )}
 
       {editable && !editing && (
-        <div className="absolute top-9 right-3">
+        <div className="absolute top-9 right-2">
           <label
             className="cursor-pointer transition-colors duration-200 hover:text-accent"
             onClick={deletePost}
