@@ -120,7 +120,7 @@
     "viewRule": "poster.role = 'admin' || @request.auth.id = poster",
     "createRule": "@request.auth.id != \"\"",
     "updateRule": "@request.auth.id = poster",
-    "deleteRule": "@request.auth.role = 'admin'",
+    "deleteRule": "@request.auth.id = poster",
     "options": {}
   }
 ]
