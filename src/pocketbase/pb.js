@@ -27,7 +27,6 @@ export const useUpdateTodo = basePosts => {
       const nextPosts = basePosts.map(post =>
         post.id === variables.id ? variables : post
       )
-      console.log(nextPosts)
       queryClient.setQueryData(['posts'], nextPosts)
     },
   })
