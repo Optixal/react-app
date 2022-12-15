@@ -11,11 +11,30 @@ export async function listPosts() {
   return await pb.collection('posts').getFullList(200)
 }
 
+// Update
+
 export async function updatePost(post) {
   return await pb.collection('posts').update(post.id, post)
 }
 
-// Delete is pretty neat
+export const useUpdateTodo = basePosts => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: post => {
+      return updatePost(post)
+    },
+    onSuccess: (data, variables, context) => {
+      const nextPosts = basePosts.map(post =>
+        post.id === variables.id ? variables : post
+      )
+      console.log(nextPosts)
+      queryClient.setQueryData(['posts'], nextPosts)
+    },
+  })
+}
+
+// Delete
+
 export async function deletePost(post) {
   return await pb.collection('posts').delete(post.id)
 }
@@ -23,8 +42,8 @@ export async function deletePost(post) {
 export const useDeleteTodo = basePosts => {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: todo => {
-      return deletePost(todo)
+    mutationFn: post => {
+      return deletePost(post)
     },
     onSuccess: (data, variables, context) => {
       const nextPosts = basePosts.filter(post => post.id !== variables.id)

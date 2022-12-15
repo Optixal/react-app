@@ -1,7 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { auth, listPosts, pb, useDeleteTodo } from '../../pocketbase/pb'
+import {
+  auth,
+  listPosts,
+  pb,
+  useDeleteTodo,
+  useUpdateTodo,
+} from '../../pocketbase/pb'
 import Post from './Post'
 
 function Pocket() {
@@ -56,6 +62,18 @@ function Pocket() {
     })
   }
 
+  const updateMutation = useUpdateTodo(data)
+  function updatePost(post) {
+    updateMutation.mutate(post, {
+      onSuccess: () => {
+        toast.success('Post updated')
+      },
+      onError: () => {
+        toast.error('Could not update post')
+      },
+    })
+  }
+
   // View/Looks
 
   if (error) {
@@ -68,6 +86,7 @@ function Pocket() {
     <Post
       record={record}
       deletePost={() => deletePost(record)}
+      updatePost={updatePost}
       key={record.id}
     />
   ))

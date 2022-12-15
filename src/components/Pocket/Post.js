@@ -1,41 +1,13 @@
-import { useRef } from 'react'
-import { useEffect } from 'react'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
-import { pb, updatePost } from '../../pocketbase/pb'
+import { pb } from '../../pocketbase/pb'
 import EditIcon from './EditIcon'
 import SaveIcon from './SaveIcon'
 import TrashIcon from './TrashIcon'
 
-function Post({ record, deletePost }) {
-  const prevEditing = useRef(false)
+function Post({ record, deletePost, updatePost }) {
   const [editing, setEditing] = useState(false)
   const [post, setPost] = useState(record)
   const editable = pb.authStore.model?.id === record.poster
-
-  // Update (not that neat yet)
-  useEffect(() => {
-    async function update() {
-      const updatePromise = updatePost(post)
-      toast.promise(updatePromise, {
-        pending: 'Updating post...',
-        success: 'Post updated',
-        error: 'Could not update post',
-      })
-      try {
-        await updatePromise
-      } catch {
-        // Reset post
-        setPost(record)
-      }
-    }
-
-    // Save post
-    if (prevEditing.current && !editing) {
-      update().catch(e => console.log(e))
-    }
-    prevEditing.current = editing
-  }, [editing, post, record])
 
   function handleChange(e) {
     setPost({
@@ -81,7 +53,10 @@ function Post({ record, deletePost }) {
             <input
               type="checkbox"
               value={editing}
-              onChange={e => setEditing(e.target.checked)}
+              onChange={e => {
+                setEditing(e.target.checked)
+                !e.target.checked && updatePost(post)
+              }}
             />
             <span className="swap-off">
               <EditIcon />
