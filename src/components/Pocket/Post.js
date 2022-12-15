@@ -5,13 +5,15 @@ import { toast } from 'react-toastify'
 import { pb, updatePost } from '../../pocketbase/pb'
 import EditIcon from './EditIcon'
 import SaveIcon from './SaveIcon'
+import TrashIcon from './TrashIcon'
 
-function Post({ record }) {
+function Post({ record, deletePost }) {
   const prevEditing = useRef(false)
   const [editing, setEditing] = useState(false)
   const [post, setPost] = useState(record)
   const editable = pb.authStore.model?.id === record.poster
 
+  // Update (not that neat yet)
   useEffect(() => {
     async function update() {
       const updatePromise = updatePost(post)
@@ -75,19 +77,32 @@ function Post({ record }) {
     <div className="relative mx-auto mb-5 w-fit rounded-md bg-base-300 py-4 pl-5 pr-10 text-left shadow-sm">
       {postBody}
       {editable && (
-        <label className="swap swap-rotate absolute top-2 right-2 cursor-pointer transition-colors duration-200 hover:text-accent">
-          <input
-            type="checkbox"
-            value={editing}
-            onChange={e => setEditing(e.target.checked)}
-          />
-          <span className="swap-off">
-            <EditIcon />
-          </span>
-          <span className="swap-on">
-            <SaveIcon />
-          </span>
-        </label>
+        <div className="absolute top-2 right-2">
+          <label className="swap swap-rotate cursor-pointer transition-colors duration-200 hover:text-accent">
+            <input
+              type="checkbox"
+              value={editing}
+              onChange={e => setEditing(e.target.checked)}
+            />
+            <span className="swap-off">
+              <EditIcon />
+            </span>
+            <span className="swap-on">
+              <SaveIcon />
+            </span>
+          </label>
+        </div>
+      )}
+
+      {editable && !editing && (
+        <div className="absolute top-9 right-3">
+          <label
+            className="cursor-pointer transition-colors duration-200 hover:text-accent"
+            onClick={deletePost}
+          >
+            <TrashIcon />
+          </label>
+        </div>
       )}
     </div>
   )

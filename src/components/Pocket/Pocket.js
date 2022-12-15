@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { auth, listPosts, pb } from '../../pocketbase/pb'
+import { auth, listPosts, pb, useDeleteTodo } from '../../pocketbase/pb'
 import Post from './Post'
 
 function Pocket() {
@@ -44,6 +44,18 @@ function Pocket() {
     refetch()
   }
 
+  const deleteMutation = useDeleteTodo(data)
+  function deletePost(post) {
+    deleteMutation.mutate(post, {
+      onSuccess: () => {
+        toast.success('Post deleted')
+      },
+      onError: () => {
+        toast.error('Could not delete post')
+      },
+    })
+  }
+
   // View/Looks
 
   if (error) {
@@ -52,7 +64,13 @@ function Pocket() {
     return <p>Loading.. ⏳</p>
   }
 
-  const posts = data?.map(record => <Post record={record} key={record.id} />)
+  const posts = data?.map(record => (
+    <Post
+      record={record}
+      deletePost={() => deletePost(record)}
+      key={record.id}
+    />
+  ))
 
   const loginLogout = loggedIn ? (
     <button onClick={logout}>Logout</button>
