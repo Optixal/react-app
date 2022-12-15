@@ -17,20 +17,23 @@ function Post({ record }) {
       const updatePromise = updatePost(post)
       toast.promise(updatePromise, {
         pending: 'Updating post...',
-        success: 'Post updated.',
-        error: 'Error updating post!',
+        success: 'Post updated',
+        error: 'Could not update post',
       })
-      await updatePromise
+      try {
+        await updatePromise
+      } catch {
+        // Reset post
+        setPost(record)
+      }
     }
 
     // Save post
     if (prevEditing.current && !editing) {
-      console.log('Title: ' + post.title)
-      console.log('Content: ' + post.content)
       update().catch(e => console.log(e))
     }
     prevEditing.current = editing
-  }, [editing, post])
+  }, [editing, post, record])
 
   let postBody
   if (editing) {
