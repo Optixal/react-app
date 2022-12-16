@@ -38,18 +38,18 @@ function Post({ record, deletePost, updatePost }) {
   } else {
     postBody = (
       <>
-        <p className="text-md m-0 font-bold">{post.title}</p>
+        <p className="text-md m-0 truncate font-bold">{post.title}</p>
         <p className="m-0 max-w-md text-sm">{post.content}</p>
       </>
     )
   }
 
   return (
-    <div className="relative mx-auto mb-5 w-fit rounded-md bg-base-300 py-4 pl-5 pr-10 text-left shadow-sm">
+    <div className="relative h-36 overflow-hidden rounded-md bg-base-300 py-4 pl-5 pr-10 text-left shadow-sm">
       {postBody}
       {editable && (
         <div className="absolute top-2 right-1">
-          <label className="swap swap-rotate cursor-pointer transition-colors duration-200 hover:text-accent">
+          <label className="swap-rotate swap cursor-pointer transition-colors duration-200 hover:text-accent">
             <input
               type="checkbox"
               value={editing}

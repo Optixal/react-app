@@ -129,7 +129,7 @@ function Pocket() {
     <div>
       {loginLogout}
       <p>{pb.authStore.isValid}</p>
-      <div>{posts}</div>
+      <div className="grid grid-cols-2 gap-4">{posts}</div>
     </div>
   )
 }
